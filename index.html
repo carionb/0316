@@ -278,9 +278,10 @@
 
         .good-comparison {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-top: 1.5rem;
+            width: 100%;
         }
 
         .good-caption {
@@ -291,26 +292,7 @@
             text-align: center;
         }
 
-        .optimization-points {
-            background: linear-gradient(145deg, #f8f9fa, #ffffff);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .optimization-points li {
-            margin: 0.8rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .optimization-points li::before {
-            content: '✓';
-            color: #27ae60;
-            position: absolute;
-            left: 0;
-        }
-
+        
     </style>
 </head>
 <body>
