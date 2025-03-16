@@ -264,38 +264,6 @@
             transition: all 0.2s;
         }
 
-        /* 新增优化样式 */
-        .good-example {
-            margin-top: 3rem;
-            padding: 2rem;
-            border-radius: 10px;
-            background: #f9f9f9;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s;
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        .good-example.active {
-            opacity: 1;
-            transform: translateY(0);
-            max-height: 1000px;
-        }
-
-        .good-example img {
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            transition: transform 0.3s;
-        }
-
-        .good-example img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
         .good-example img {
             border: 1px solid rgba(0,0,0,0.1);
             border-radius: 8px;
@@ -639,26 +607,26 @@
             closeAnalysis(exampleId);
         }
 
-        document.addEventListener('click', (e) => {
-            const target = e.target;
-            
-            if(target.classList.contains('toggle-good')) {
-                const exampleId = target.dataset.example;
-                toggleGoodExample(exampleId, target);
-            }
-        });
-
         function toggleGoodExample(exampleId, button) {
-            const goodExample = document.getElementById(`good${exampleId}`);
-            goodExample.classList.toggle('active');
-            button.textContent = goodExample.classList.contains('active') 
-                ? 'Hide Improved Visualization' 
-                : 'Show Improved Visualization';
-            
-            if(goodExample.classList.contains('active')) {
-                goodExample.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
+    const goodExample = document.getElementById(`good${exampleId}`);
+    const isActive = goodExample.classList.toggle('active');
+    
+    // 更新按钮文本
+    button.textContent = isActive 
+        ? 'Hide Improved Visualization' 
+        : 'Show Improved Visualization';
+    
+    // 滚动到可见区域
+    if(isActive) {
+        setTimeout(() => {
+            goodExample.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start',
+                inline: 'nearest'
+            });
+        }, 300); 
+    }
+}
     </script>
 </body>
 </html>
